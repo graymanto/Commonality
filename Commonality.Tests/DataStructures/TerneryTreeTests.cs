@@ -19,7 +19,7 @@ namespace Commonality.Tests.DataStructures
             Assert.IsFalse(tree.ContainsWord("anything"));
 
             var emptyMatchTest = tree.WordsFromPartial("anythingelse");
-            Assert.IsTrue(emptyMatchTest.Count() == 0);
+            Assert.IsTrue(!emptyMatchTest.Any());
         }
 
         [TestMethod]
@@ -27,10 +27,10 @@ namespace Commonality.Tests.DataStructures
         {
             var tree = new TernaryTree();
 
-            var testString = "test";
-            tree.Add(testString);
+            const string TestString = "test";
+            tree.Add(TestString);
 
-            Assert.IsTrue(tree.ContainsWord(testString));
+            Assert.IsTrue(tree.ContainsWord(TestString));
         }
 
         [TestMethod]
@@ -65,7 +65,7 @@ namespace Commonality.Tests.DataStructures
             var tree = new TernaryTree();
             tree.Add(testList);
 
-            var testResult1 = tree.WordsFromPartial("a");
+            var testResult1 = tree.WordsFromPartial("a").ToList();
 
             Assert.IsTrue(testResult1 != null);
             Assert.IsTrue(testResult1.Count() == 4);
@@ -74,14 +74,12 @@ namespace Commonality.Tests.DataStructures
                           testResult1.Contains("abby") &&
                           testResult1.Contains("average"));
 
-            var testResult2 = tree.WordsFromPartial("ab");
+            var testResult2 = tree.WordsFromPartial("ab").ToList();
 
             Assert.IsTrue(testResult2 != null);
             Assert.IsTrue(testResult2.Count() == 2);
             Assert.IsTrue(testResult2.Contains("abby") &&
                           testResult2.Contains("above"));
-
         }
-
     }
 }

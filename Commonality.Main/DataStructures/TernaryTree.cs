@@ -43,8 +43,8 @@ namespace Commonality.Main.DataStructures
         /// <summary>
         /// Returns a list of full word matchs from the tree given a partial string.
         /// </summary>
-        /// <param name="partial"></param>
-        /// <returns></returns>
+        /// <param name="partial">The partial word.</param>
+        /// <returns>A list of partial words</returns>
         public IEnumerable<string> WordsFromPartial(string partial)
         {
             int index = 0;
@@ -65,6 +65,7 @@ namespace Commonality.Main.DataStructures
                         GetWordCompletionsFromNode(wordList, partial, currentNode.Middle);
                         return wordList;
                     }
+
                     currentNode = currentNode.Middle;
                 }
             }
@@ -106,6 +107,7 @@ namespace Commonality.Main.DataStructures
         {
             if (node == null)
                 return;
+
             if (node.IsEndOfWord)
             {
                 words.Add(wordSoFar + node.Char);
